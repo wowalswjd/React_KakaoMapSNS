@@ -1,15 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
+import Header from './Header';
 import Main from "./views/Main";
-import SearchMap from "./views/SearchMap";
+import FindPlace from './views/FindPlace';
+import SearchMapGeo from "./views/SearchMapGeo";
+import CurrentLocation from './views/CurrentLocation';
 
 function App() {
   return (
     <div className="App">
+      <Header />
       <Routes>
         <Route path="/" element={ <Main /> } exact={true} />
-        <Route path="/map" element={ <SearchMap /> } />
+        <Route path="/place" element={ <FindPlace /> } />
+        {/* <Route path="/map" element={ <SearchMapGeo /> } /> */}
+        <Route path="/location" element= { <CurrentLocation /> }></Route>
       </Routes>
     </div>
   );

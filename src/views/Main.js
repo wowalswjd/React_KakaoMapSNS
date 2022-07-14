@@ -7,7 +7,7 @@ function Main() {
         <div>
             <p>메인페이지</p>
             <button>
-                <Link to="/map">go start</Link>
+                <Link to="/place">go start</Link>
             </button>
         </div>
     )
