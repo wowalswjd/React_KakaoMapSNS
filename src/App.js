@@ -6,6 +6,7 @@ import Main from "./views/Main";
 import FindPlace from './views/FindPlace';
 import SearchMapGeo from "./views/SearchMapGeo";
 import CurrentLocation from './views/CurrentLocation';
+import Community from './views/Community';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/place" element={ <FindPlace /> } />
         {/* <Route path="/map" element={ <SearchMapGeo /> } /> */}
         <Route path="/location" element= { <CurrentLocation /> }></Route>
+        <Route path="/community" element= { <Community/> }></Route>
       </Routes>
     </div>
   );

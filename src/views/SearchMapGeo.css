@@ -1,0 +1,17 @@
+.markerDesc {
+    font-size: 15px;
+}
+
+.geomap {
+    width:500px;
+    height:500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width: 500px) {
+    .geomap {
+      width: 280px;
+      height: 280px;
+    }
+  }

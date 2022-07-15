@@ -1,0 +1,9 @@
+.lifeonmaplogo {
+    width: 200px;
+}
+
+@media screen and (max-width: 290px) {
+    .lifeonmaplogo{
+      width:170px;
+    }
+  }

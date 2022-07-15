@@ -1,0 +1,14 @@
+.mainimg {
+    position: relative;
+    background-image: url("../gps&image\ transparent.png");
+    width: 612px;
+    height: 490px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.maintext {
+    position: absolute;    
+    top: 50%;    
+    transform: translate(0, -50%);
+}

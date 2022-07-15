@@ -2,10 +2,24 @@ import React , { useRef, useEffect, useState } from "react";
 import { Routes, Route, Link } from 'react-router-dom';
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import Form from 'react-bootstrap/Form';
+import './SearchMapGeo.css';
 
 
 function SearchMapGeo() {
     
+    // 임의로 넣은 데이터 - 곧 삭제
+    let [글내용, 글내용변경] = useState({
+        title: "우리 동아리 사진",
+        img: <img
+                src={"/img/동아리회의일러스트.png"}
+                alt="동아리회의"
+                style={{width:"300px"}}
+            />,
+        date: "2022-07-11 Mon",
+        desc: "학문관 앞에서 친구들과 UNIS 회의!"
+    });
+    let [openPost, setOpenPost] = useState(false);
+
     const [state, setState] = useState({
         // 지도의 초기 위치
         center: { lat: 37.5625257907305, lng: 126.94766368999385 },
@@ -65,19 +79,35 @@ function SearchMapGeo() {
             <Map
                 center={state.center}
                 isPanto={state.isPanto}
-                style={{ width: "500px", height: "500px", marginLeft:"auto", marginRight:"auto" }}
+                className="geomap"
                 onClick={(_t, mouseEvent) => setPosition({
                     lat: mouseEvent.latLng.getLat(),
                     lng: mouseEvent.latLng.getLng(),
                   })}
             >
+                {/* 임의로 넣은 마커 */}
+                <MapMarker 
+                    position={{lat: 37.56264190030759, lng: 126.94541124262649}}
+                    clickable={true}
+                    onClick={ () => {setOpenPost(true)}}
+                    image={{
+                        src: "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png",
+                        size: {
+                            width: 24,
+                            height: 35,
+                          }
+                    }}
+                ></MapMarker>
+
                 {/* 검색 결과 마커 */}
                 <MapMarker position={state.center}>
-                    <div style={{color:"#000"}}>
-                        검색 결과가 맞나요?<br/>
-                        <button>마커 저장하기</button><br/>
-                        <button>게시글 작성하기</button><br/>
-                        <button>작성된 게시글 보기</button>
+                    <div className="markerDesc">
+                        <span>검색 결과가 맞나요?</span><br/>
+                        <div style={{backgroundColor:"lightgrey"}}>
+                            <span>마커 저장하기</span><br/>
+                            <span>게시글 작성하기</span><br/>
+                            <span>작성된 게시글 보기</span>
+                        </div>
                     </div>
                 </MapMarker>
 
@@ -88,11 +118,13 @@ function SearchMapGeo() {
                     onClick={ () => {markerClickSwitch()} }
                 >
                     {isOpen ? (
-                        <div>
-                            클릭한 위치가 맞나요?<br/>
-                            <button>마커 저장하기</button><br/>
-                            <button>게시글 작성하기</button><br/>
-                            <button>작성된 게시글 보기</button>
+                        <div className="markerDesc">
+                            <span>클릭한 위치가 맞나요?</span><br/>
+                            <div style={{backgroundColor:"lightgrey"}}>
+                                <span>마커 저장하기</span><br/>
+                                <span>게시글 작성하기</span><br/>
+                                <span>작성된 게시글 보기</span>
+                            </div>
                         </div>
                     )
                     
@@ -101,8 +133,30 @@ function SearchMapGeo() {
             </Map>
             {position && <p>{'클릭한 위치의 위도는 ' + position.lat + ' 이고, 경도는 ' + position.lng + ' 입니다.'}</p>}
             <br/><br/>
+            
+
+            {/* 임의로 넣은 데이터 */}
+            {
+                openPost
+                ?
+                <>
+                    <div style={{backgroundColor: "#eee", marginLeft:"30%", marginRight:"30%"}}>
+                        
+                        <br/>
+                        <h4>{글내용.title}</h4><hr/>
+                        {글내용.img}<br/>
+                        <h6>{글내용.date}</h6><br/>
+                        {글내용.desc}
+                        <br/><br/>
+                    </div>
+                    <br/>
+                    <br/>
+                </>
+                :null
+            }
         </div>
     )
 }
 
 export default SearchMapGeo;
+
